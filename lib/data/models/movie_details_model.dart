@@ -1,34 +1,34 @@
 import 'package:moviesearch/domain/entities/entities.dart';
 
-class MovieModel {
+class MovieDetailsModel {
   int id;
   String title;
   String overview;
   String posterPath;
-  // List<Genres> genreList;
-  // DateTime releaseDate;
+  String releaseDate;
+  double popularity;
   double rating;
 
-  MovieModel({
+  MovieDetailsModel({
     required this.id,
     required this.title,
     required this.overview,
     required this.posterPath,
-    // required this.genreList,
-    // required this.releaseDate,
+    required this.releaseDate,
+    required this.popularity,
     required this.rating,
   });
 
   //convert JSON to MovieModal
   //JSON Deserialization
-  factory MovieModel.fromJson(Map<String, dynamic> json) {
-    return MovieModel(
+  factory MovieDetailsModel.fromJson(Map<String, dynamic> json) {
+    return MovieDetailsModel(
         id: json['id'],
         title: json['title'],
         overview: json['overview'],
         posterPath: json['poster_path'],
-        // genreList: json['genre_ids'],
-        // releaseDate: json['release_date'],
+        releaseDate: json['release_date'],
+        popularity: json['popularity'],
         rating: json['vote_average']);
     // );
   }
@@ -41,8 +41,8 @@ class MovieModel {
       'title': title,
       'overview': overview,
       'poster_path': posterPath,
-      // 'genre_ids': genreList,
-      // 'release_date': releaseDate,
+      'release_date': releaseDate,
+      'popularity': popularity,
       'vote_average': rating,
     };
   }

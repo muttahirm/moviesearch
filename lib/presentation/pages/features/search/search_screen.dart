@@ -42,32 +42,12 @@ class SearchMovieScreen extends StatelessWidget {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.black),
                         borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
+                          Radius.circular(8.0),
                         ),
                       ),
                     ),
                   ),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 8.0),
-                //   child: ElevatedButton(
-                //     onPressed: () {
-                //       searchMovieBloc.add(
-                //           FetchSearchMovies(searchQueryController.text.trim()));
-                //     },
-                //     style: ElevatedButton.styleFrom(
-                //       backgroundColor: Colors.orange[200],
-                //       shape: RoundedRectangleBorder(
-                //         borderRadius: BorderRadius.circular(5),
-                //       ),
-                //       fixedSize: const Size(100, 30),
-                //     ),
-                //     child: const Text(
-                //       'Search',
-                //       style: TextStyle(color: Colors.black),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
             Expanded(
@@ -103,7 +83,7 @@ class SearchMovieScreen extends StatelessWidget {
                   if (state is SearchMoviesLoading) {
                     return const Center(
                       child: CircularProgressIndicator(
-                        color: Colors.orange,
+                        color: Colors.green,
                       ),
                     );
                   }

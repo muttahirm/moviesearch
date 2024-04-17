@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:moviesearch/domain/entities/entities.dart';
+import 'package:moviesearch/presentation/presentation.dart';
 
 class MovieList extends StatelessWidget {
   final List<Movie> movies;
@@ -22,8 +23,13 @@ class MovieList extends StatelessWidget {
             movie.title,
             style: const TextStyle(fontWeight: FontWeight.w600),
           ),
-          subtitle: Text(movie.overview),
-          onTap: () {},
+          onTap: () {
+            final route = MaterialPageRoute<void>(
+              builder: (BuildContext context) =>
+                  MovieDetailsScreen(movieId: movie.id),
+            );
+            Navigator.of(context).push(route);
+          },
         );
       },
     );
