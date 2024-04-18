@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:moviesearch/configs/configs.dart';
 import 'package:moviesearch/core/error/error.dart';
 import 'package:moviesearch/data/data_source/movie_remote_data_source.dart';
 import 'package:moviesearch/data/models/models.dart';
@@ -14,9 +15,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     required this.client,
   });
 
-  static const BASE_URL = "https://api.themoviedb.org/3";
-  static const API_KEY = "ea17a4597efff89db3eee641bad4ce56";
-
+  //Search Movies function
   @override
   Future<List<MovieModel>> searchMovies(String query) async {
     final response = await client
@@ -34,6 +33,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     }
   }
 
+  //Movie details function
   @override
   Future<MovieDetailsModel> fetchMovieDetails(int movieId) async {
     final response = await client.get(
