@@ -14,27 +14,32 @@ class MovieList extends StatelessWidget {
       itemCount: movies.length,
       itemBuilder: (BuildContext context, int index) {
         var movie = movies[index];
-        return ListTile(
-          leading: Image.network(
-            'https://image.tmdb.org/t/p/w500/${movie.posterPath}',
-            width: 80,
-            fit: BoxFit.cover,
-            alignment: Alignment.topCenter,
-          ),
-          title: Text(
-            movie.title,
-            style: const TextStyle(fontWeight: FontWeight.w600),
-          ),
-          onTap: () {
-            final route = MaterialPageRoute<void>(
-              builder: (BuildContext context) => BlocProvider(
-                create: (context) =>
-                    getIt<MovieDetailsBloc>()..add(FetchMovieDetails(movie.id)),
-                child: MovieDetailsScreen(movieId: movie.id),
+        return Column(
+          children: [
+            ListTile(
+              leading: Image.network(
+                'https://image.tmdb.org/t/p/w500/${movie.posterPath}',
+                width: 80,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
               ),
-            );
-            Navigator.of(context).push(route);
-          },
+              title: Text(
+                movie.title,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+              onTap: () {
+                final route = MaterialPageRoute<void>(
+                  builder: (BuildContext context) => BlocProvider(
+                    create: (context) => getIt<MovieDetailsBloc>()
+                      ..add(FetchMovieDetails(movie.id)),
+                    child: MovieDetailsScreen(movieId: movie.id),
+                  ),
+                );
+                Navigator.of(context).push(route);
+              },
+            ),
+            if (index < movies.length - 1) const Divider(),
+          ],
         );
       },
     );

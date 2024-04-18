@@ -15,7 +15,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   });
 
   static const BASE_URL = "https://api.themoviedb.org/3";
-  static const API_KEY = "26e2a7846caf53650a6f9bc938e4dc0d";
+  static const API_KEY = "ea17a4597efff89db3eee641bad4ce56";
 
   @override
   Future<List<MovieModel>> searchMovies(String query) async {
@@ -36,8 +36,8 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<MovieDetailsModel> fetchMovieDetails(int movieId) async {
-    final response = await client.get(Uri.parse(
-        "https://api.themoviedb.org/3/movie/$movieId?language=en-US&api_key=$API_KEY"));
+    final response = await client.get(
+        Uri.parse("$BASE_URL/movie/$movieId?language=en-US&api_key=$API_KEY"));
 
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body);
