@@ -19,7 +19,7 @@ class MovieDetailsModel {
     required this.rating,
   });
 
-  //convert JSON to MovieModal
+  //convert JSON to MovieDetailsModal
   //JSON Deserialization
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) {
     return MovieDetailsModel(
@@ -33,7 +33,7 @@ class MovieDetailsModel {
     // );
   }
 
-  //convert MoviModel to JSON
+  //convert MovieDetailsModel to JSON
   //JSON Serialization
   Map<String, dynamic> toJson() {
     return {
@@ -47,16 +47,14 @@ class MovieDetailsModel {
     };
   }
 
-  //convert movie to entity
-  Movie toEntity() {
-    return Movie(
-      id: id,
-      title: title,
-      overview: overview,
-      posterPath: posterPath,
-      // genreList: genreList,
-      // releaseDate: releaseDate,
-      rating: rating,
-    );
+  //convert movie details to entity
+  MovieDetails toEntity() {
+    return MovieDetails(
+        id: id,
+        title: title,
+        overview: overview,
+        releaseDate: releaseDate,
+        popularity: popularity,
+        rating: rating);
   }
 }

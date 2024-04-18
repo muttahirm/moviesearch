@@ -5,7 +5,6 @@ import 'package:moviesearch/data/models/models.dart';
 import 'package:moviesearch/data/models/movie_details_model.dart';
 import 'package:moviesearch/domain/entities/entities.dart';
 import 'package:moviesearch/domain/repositories/repositories.dart';
-import 'package:moviesearch/presentation/blocs/blocs.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource remoteDataSource;
@@ -26,12 +25,11 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<Failure, MovieDetailsModel>> fetchMovieDetails(
-      int movieId) async {
+  Future<Either<Failure, MovieDetails>> fetchMovieDetails(int movieId) async {
     try {
       final MovieDetailsModel movieDetails =
           await remoteDataSource.fetchMovieDetails(movieId);
-      return Right(movieDetails);
+      return Right(movieDetails.toEntity());
     } catch (e) {
       return Left(ServerFailure());
     }

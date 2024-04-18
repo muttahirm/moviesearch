@@ -1,13 +1,11 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:dartz/dartz.dart';
 import 'package:moviesearch/core/error/error.dart';
 import 'package:moviesearch/domain/entities/entities.dart';
 import 'package:moviesearch/domain/repositories/repositories.dart';
 
-class SearchMovies {
+class SearchMoviesUsecase {
   final MovieRepository repository;
-  SearchMovies(
+  SearchMoviesUsecase(
     this.repository,
   );
 

@@ -6,12 +6,12 @@ part 'search_movies_event.dart';
 part 'search_movies_state.dart';
 
 class SearchMoviesBloc extends Bloc<SearchMoviesEvent, SearchMoviesState> {
-  final SearchMovies searchMovies;
-  SearchMoviesBloc({required this.searchMovies})
+  final SearchMoviesUsecase searchMoviesUsecase;
+  SearchMoviesBloc({required this.searchMoviesUsecase})
       : super(SearchMoviesInitial()) {
     on<FetchSearchMovies>((event, emit) async {
       emit(SearchMoviesLoading());
-      final failureOrMovies = await searchMovies(event.query);
+      final failureOrMovies = await searchMoviesUsecase(event.query);
       failureOrMovies.fold(
         (failure) => emit(SearchMoviesLoadingFailure(failure.toString())),
         (movie) => emit(SearchMoviesLoadingSuccess(movie)),

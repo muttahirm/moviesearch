@@ -6,6 +6,7 @@ class MovieDetails extends Equatable {
   final String overview;
   final String releaseDate;
   final double popularity;
+  final double rating;
 
   const MovieDetails({
     required this.id,
@@ -13,11 +14,13 @@ class MovieDetails extends Equatable {
     required this.overview,
     required this.releaseDate,
     required this.popularity,
+    required this.rating,
   });
 
   //Overrides the props getter method from the Equatable class
   //This method is used to define the list of properties that should be considered when
   //determining the equality of two instances of the Todo class
   @override
-  List<Object?> get props => [id, title, overview, releaseDate, popularity];
+  List<Object?> get props =>
+      [id, title, overview, releaseDate, popularity, rating];
 }

@@ -23,15 +23,16 @@ final getIt = GetIt.instance;
 void init() {
   //Bloc
   // getIt.registerFactory(() => PopularMovieBloc(getPopularMovies: getIt()));
-  // getIt.registerFactory(() => TrendingMoviesBloc(getTrendingMovies: getIt()));
-  getIt.registerFactory(() => SearchMoviesBloc(searchMovies: getIt()));
+  getIt.registerFactory(
+      () => MovieDetailsBloc(fetchMovieDetailsUsecase: getIt()));
+  getIt.registerFactory(() => SearchMoviesBloc(searchMoviesUsecase: getIt()));
   //Register the PopularMovieBloc as a factory in GetI
   //whenever someone requests an instance of PopularMovieBloc, GetIt will create a new instance
 
   //Use cases
   // getIt.registerLazySingleton(() => GetPopularMovies(getIt()));
-  // getIt.registerLazySingleton(() => GetTrendingMovies(getIt()));
-  getIt.registerLazySingleton(() => SearchMovies(getIt()));
+  getIt.registerLazySingleton(() => FetchMovieDetailsUsecase(getIt()));
+  getIt.registerLazySingleton(() => SearchMoviesUsecase(getIt()));
   //It ensures that only one instance of GetPopularMovies exists in the application
   //instance is created only when it is first requested
 

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviesearch/domain/entities/entities.dart';
+import 'package:moviesearch/injection_container.dart';
 import 'package:moviesearch/presentation/presentation.dart';
 
 class MovieList extends StatelessWidget {
@@ -25,8 +27,11 @@ class MovieList extends StatelessWidget {
           ),
           onTap: () {
             final route = MaterialPageRoute<void>(
-              builder: (BuildContext context) =>
-                  MovieDetailsScreen(movieId: movie.id),
+              builder: (BuildContext context) => BlocProvider(
+                create: (context) =>
+                    getIt<MovieDetailsBloc>()..add(FetchMovieDetails(movie.id)),
+                child: MovieDetailsScreen(movieId: movie.id),
+              ),
             );
             Navigator.of(context).push(route);
           },

@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, constant_identifier_names
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
@@ -36,13 +36,21 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
 
   @override
   Future<MovieDetailsModel> fetchMovieDetails(int movieId) async {
-    final response = await client
-        .get(Uri.parse("$BASE_URL/search/movie/$movieId&api_key=$API_KEY"));
+    final response = await client.get(Uri.parse(
+        "https://api.themoviedb.org/3/movie/$movieId?language=en-US&api_key=$API_KEY"));
 
     if (response.statusCode == 200) {
       final responseBody = json.decode(response.body);
 
-      final MovieDetailsModel movieDetails = responseBody['results'];
+      final MovieDetailsModel movieDetails = MovieDetailsModel(
+        id: responseBody['id'],
+        title: responseBody['title'],
+        overview: responseBody['overview'],
+        posterPath: responseBody['poster_path'],
+        releaseDate: responseBody['release_date'],
+        popularity: responseBody['popularity'],
+        rating: responseBody['vote_average'],
+      );
       return movieDetails;
     } else {
       throw ServerException();
